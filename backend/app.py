@@ -1,14 +1,15 @@
 from flask import Flask, request, jsonify
 import mysql.connector
+import os
 
 app = Flask(__name__)
 
-# MySQL Database Connection
+# MySQL Database Connection (Uses Environment Variables)
 db = mysql.connector.connect(
-    host="localhost",
-    user="your_mysql_user",  # Replace with your MySQL username
-    password="your_mysql_password",  # Replace with your MySQL password
-    database="contact_db"
+    host=os.getenv("DB_HOST", "mysql"),  # Use "mysql" as the hostname inside Docker
+    user=os.getenv("DB_USER", "your_mysql_user"),
+    password=os.getenv("DB_PASSWORD", "your_mysql_password"),
+    database=os.getenv("DB_NAME", "contact_db")
 )
 
 cursor = db.cursor()
@@ -43,6 +44,6 @@ def contact():
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
+
