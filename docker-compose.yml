@@ -29,6 +29,14 @@ services:
       DB_PASSWORD: your_mysql_password
       DB_NAME: contact_db
 
+  frontend:
+    build: ./frontend  # Ensure this points to your frontend folder
+    container_name: frontend-container
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
 volumes:
   mysql_data:
-
