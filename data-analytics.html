@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Course</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        /* Background Image */
+        .container {
+            background: url('https://images.unsplash.com/photo-1557838923-2985c318be48?w=1600&h=900&fit=crop') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        /* Content Box */
+        .content-box {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 750px;
+            text-align: left;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #00d4ff;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .content {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #007bff;
+            color: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: scale(1.05);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="content-box">
+            <h1>📊 Data Analytics Course</h1>
+            <p class="content">Learn to analyze data, create visualizations, and make data-driven decisions.</p>
+            <h3>📌 Topics Covered:</h3>
+            <ul>
+                <li>📊 Data Visualization (Power BI, Tableau)</li>
+                <li>🐍 Python for Data Analysis</li>
+                <li>📂 SQL & Databases</li>
+                <li>🔍 Business Intelligence & Reporting</li>
+                <li>🤖 Predictive Analytics & AI</li>
+            </ul>
+            <a href="index.html" class="back-btn">⬅️ Back to Courses</a>
+        </div>
+    </div>
+
+</body>
+</html>

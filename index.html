@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYL Technologies - Courses & Contact</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=1600&h=900&fit=crop') no-repeat center center/cover;
+            background-size: cover;
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 30px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Course Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        /* Course Box */
+        .course {
+            background: rgba(0, 0, 0, 0.8);
+            width: 300px;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .course:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .course h2 {
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        .course p {
+            font-size: 16px;
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        .contact-section h2 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form button {
+            background: #00d4ff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #0094c6;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .success-message {
+            color: green;
+            font-size: 16px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">MYL Technologies - Our Courses</div>
+
+    <!-- Course Section -->
+    <div class="container">
+        <a href="devops.html" class="course">
+            <h2>⚙️ DevOps</h2>
+            <p>Master CI/CD, Kubernetes, Docker, and Infrastructure Automation.</p>
+        </a>
+
+        <a href="data-science.html" class="course">
+            <h2>📊 Data Science</h2>
+            <p>Master Python, machine learning, and data visualization.</p>
+        </a>
+
+        <a href="data-analytics.html" class="course">
+            <h2>📈 Data Analytics</h2>
+            <p>Analyze, visualize, and interpret data for better decision-making.</p>
+        </a>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section">
+        <h2>Contact Us</h2>
+        <p>Email: <strong>info@example.com</strong></p>
+        <p>Phone: <strong>+1 (234) 567-890</strong></p>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h3>Submit Your Contact Details</h3>
+            <input type="text" id="contact-name" placeholder="Your Name">
+            <span class="error" id="name-error">Please enter your name.</span>
+
+            <input type="email" id="contact-email" placeholder="Your Email">
+            <span class="error" id="email-error">Please enter a valid email.</span>
+
+            <input type="tel" id="contact-phone" placeholder="Your Mobile Number">
+            <span class="error" id="phone-error">Please enter a valid phone number.</span>
+
+            <textarea id="contact-message" placeholder="Your Message" rows="4"></textarea>
+            <span class="error" id="message-error">Please enter a message.</span>
+
+            <button onclick="submitContact()">Submit</button>
+            <p class="success-message" id="success-message">Your details have been submitted successfully!</p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Contact Form -->
+    <script>
+        function validateForm(name, email, phone, message) {
+            let isValid = true;
+
+            document.getElementById("name-error").style.display = name ? "none" : "block";
+            document.getElementById("email-error").style.display = email.includes("@") ? "none" : "block";
+            document.getElementById("phone-error").style.display = phone.length >= 10 ? "none" : "block";
+            document.getElementById("message-error").style.display = message ? "none" : "block";
+
+            if (!name || !email.includes("@") || phone.length < 10 || !message) {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function submitContact() {
+            let name = document.getElementById('contact-name').value.trim();
+            let email = document.getElementById('contact-email').value.trim();
+            let phone = document.getElementById('contact-phone').value.trim();
+            let message = document.getElementById('contact-message').value.trim();
+
+            if (!validateForm(name, email, phone, message)) {
+                return;
+            }
+
+            fetch('http://localhost:5000/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, phone, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('success-message').style.display = 'block';
+                document.getElementById('contact-name').value = '';
+                document.getElementById('contact-email').value = '';
+                document.getElementById('contact-phone').value = '';
+                document.getElementById('contact-message').value = '';
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("There was an error submitting your details. Please try again.");
+            });
+        }
+    </script>
+
+</body>
+</html>
